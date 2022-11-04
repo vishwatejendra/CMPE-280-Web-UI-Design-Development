@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+  color: darkblue;
+}
+
+hr {
+  border: 1px solid darkblue;
+}
+
+.palette-grid {
+  display: flex;
+}
+
+.shapes-grid {
+  border: 1px solid darkblue;
+  margin-top: 150px;
+  margin-left: 400px;
+  margin-right: 75px;
+  width: 150px;
+  height: 600px;
+}
+
+.canvas-grid {
+  border: 1px solid darkblue;
+  margin-top: 150px;
+  width: 900px;
+  height: 600px;
+}
+
+#rectangle {
+    margin-left:25px;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+#circle {
+    margin-left:25px;
+    margin-bottom:25px;
+}
+
+#triangle {
+    margin-left:25px;
+    margin-bottom:25px;
+}
+
+#arrow {
+    margin-left:25px;
+}
