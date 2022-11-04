@@ -1,0 +1,212 @@
+<!-- API Key AIzaSyBz7IMUgFRbT0aF77jT6IiOJLysb8Q8Igs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Circles</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz7IMUgFRbT0aF77jT6IiOJLysb8Q8Igs&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      const citymap = {
+        "locations":
+        {
+            "location":
+                [
+                    {
+                        "id": "0001",
+                        "type": "RetailLocation",
+                        "address": "Fremont, CA 94538",
+                        "latitude":37.542571,
+                        "longitude":-121.993037,
+                        "$revenue": 10000000
+                    }, 
+                    {
+                        "id": "0002",
+                        "type": "RetailLocation",
+                        "address": "Newark, CA",
+                        "latitude": 37.525400,
+                        "longitude":-122.037764,
+                        "$revenue": 3000000
+                    }, 
+                    {
+                        "id": "0003",
+                        "type": "RetailLocation",
+                        "address": "4100-4198 Pleiades Pl,Union City, CA 94587",
+                        "latitude": 37.587546,
+                        "longitude":-122.066716,
+                        "$revenue": 120000000
+                    },
+                    {
+                        "id": "0004",
+                        "type": "RetailLocation",
+                        "address": "4100-4198 Pleiades Pl,Union City, CA 94587",
+                        "latitude": 37.587546,
+                        "longitude":-122.066716,
+                        "$revenue": 120000000
+                    },
+                    {
+                        "id": "0005",
+                        "type": "RetailLocation",
+                        "address": "Burbank,Hayward, CA",
+                        "latitude": 37.660284,
+                        "longitude": -122.089396,
+                        "$revenue": 5000000
+                    },
+                    {
+                        "id": "0006",
+                        "type": "Distribution Facility",
+                        "address": "Sugarloaf San Mateo, CA",
+                        "latitude": 37.527798,
+                        "longitude": -122.312989,
+                        "$revenue": 300000
+                    },
+                    {
+                        "id": "0007",
+                        "type": "RetailLocation",
+                        "address": "San Carlos, CA",
+                        "latitude": 37.492686,
+                        "longitude": -122.249346,
+                        "$revenue": 3002000
+                    },
+                    {
+                        "id": "0008",
+                        "type": "RetailLocation",
+                        "address": "Santa Cruz County CA",
+                        "latitude": 37.007888,
+                        "longitude": -122.067355,
+                        "$revenue": 88999090
+                    },
+                    {
+                        "id": "0009",
+                        "type": "RetailLocation",
+                        "address": "Santa Clara County CA",
+                        "latitude": 37.113164,
+                        "longitude": -121.651485,
+                        "$revenue": 88999090
+                    },
+                    {
+                        "id": "0010",
+                        "type": "Distribution Facility",
+                        "address": "Santa Cruz County CA",
+                        "latitude": 37.006852,
+                        "longitude": -122.064148,
+                        "$revenue": 1000000
+                    }, 
+                    {
+                        "id": "0011",
+                        "type": "Call Center",
+                        "address": "Santa Clara, CA",
+                        "latitude": 37.344717,
+                        "longitude": -121.979666,
+                        "$revenue": 1000000
+                    },
+                    {
+                        "id": "0012",
+                        "type": "RetailLocation",
+                        "address": "Pleasanton, CA",
+                        "latitude": 37.638625,
+                        "longitude": -121.911430,
+                        "$revenue": 1000000
+                    },
+                    {
+                        "id": "0013",
+                        "type": "HeadQuarters",
+                        "address": "Mission District San Francisco, CA",
+                        "latitude": 37.753038,
+                        "longitude": -122.423198,
+                        "$revenue": 1000000
+                    },
+                    {
+                        "id": "0014",
+                        "type": "RetailLocation",
+                        "address": "Pacifica, CA",
+                        "latitude": 37.594870,
+                        "longitude": -122.473562,
+                        "$revenue": 50000
+                    },
+                    {
+                        "id": "0015",
+                        "type": "RetailLocation",
+                        "address": "Gilroy, CA",
+                        "latitude": 36.995174,
+                        "longitude": -121.602745,
+                        "$revenue": 50000
+                    }
+                ]
+        }
+      };
+
+      // Distribution facilities – Red Flag
+      // Headquarters – White Flag
+      // Call center – Blue Flag
+      // Retail locations – Green Flag
+      function initMap() {
+        // Create the map.
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: 37.09, lng: -95.712 },
+          mapTypeId: "terrain",
+        });
+
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        var citymapp = citymap["locations"]["location"]
+        var flag_color = "#FFD9D1"; 
+        
+        for (const city in citymapp) {
+          const flag = citymapp[city]["type"]; 
+          console.log("flag: ", flag)
+          // Add the circle for this city to the map.
+            if (flag == 'HeadQuarters')
+            {
+              flag_color = "#FDF5F3" // white
+            }
+            else if (flag == 'RetailLocation')
+            {
+              flag_color = '#00DB33' // green
+            }
+            else if (flag == 'Call Center')
+            {
+              flag_color = '#0C5AF2' // blue
+            }
+            else if ("Distribution Facility")
+            {
+              flag_color = 'EB2E2B' // red
+            }
+
+          const cityCircle = new google.maps.Circle({
+            strokeColor: flag_color,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: flag_color,
+            fillOpacity: 0.35,
+            map,
+            center: { lat: citymapp[city]["latitude"], lng: citymapp[city]["longitude"]},
+            radius: Math.sqrt(citymapp[city]["$revenue"] * 2),
+          });
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
