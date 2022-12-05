@@ -4,7 +4,7 @@ This is an eBay-like e-commerce auction website built using **Django 4** with **
 
 ![](images/Active_Auctions.jpg)
 
-![](images/Dasboard.jpg)
+![](images/Dashboard.jpg)
 
 
 ## Table of Contents 
